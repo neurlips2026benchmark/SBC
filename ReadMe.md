@@ -390,3 +390,17 @@ All account information appearing in agent trajectories — including names, add
 - Judge output format is JSONL, one record per run.
 - The `need_human_review` flag in the judge output identifies cases where automatic labeling is uncertain and manual inspection is recommended.
 - All experiments are conducted within a fully sandboxed environment. No real user data, financial transactions, or third-party systems are involved at any stage.
+
+---
+
+## Citation
+If you find this repository useful, please cite our paper through
+
+```
+@article{wang2026pays,
+  title={Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents},
+  author={Wang, Zihao and Li, Yiming and Wu, Yutong and Liu, Zheyu and Chen, Kangjie and Wai, Fok Kar and Chen, Pin-Yu and Thing, Vrizlynn LL and Li, Bo and Tao, Dacheng and others},
+  journal={arXiv preprint arXiv:2606.13385},
+  year={2026}
+}
+```
