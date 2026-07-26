@@ -43,7 +43,6 @@ StakeBench/
 ├── run_benchmark.py                ← IPI environment injection script
 ├── template_configs.py             ← Template definitions (do not edit)
 ├── run_judge.py                    ← LLM-based auto-evaluation script
-├── run_agent.py                    ← BrowserUse Agent as an example
 │
 ├── DPI_attack/
 │   ├── Agent_Execution_log/
@@ -76,7 +75,7 @@ StakeBench/
 
 | Item | Description |
 |---|---|
-| Environment | OneStopMarket from VisualWebArena, a functional e-commerce platform |
+| Environment | OneStopMarket from WebArena, a locally instantiated version of the OneStopShop shopping environment from WebArena |
 | Primary attack setting | Indirect prompt injection through environmental content |
 | Reference attack setting | Direct prompt injection through user input |
 | Stakeholder categories | User, Seller, Platform |
@@ -130,7 +129,9 @@ The `Agent_Execution_log/` directories contain the agent trajectories from our e
 
 ### Stage A — Benchmark Setup and Agent Evaluation
 
-This stage is only required if you want to run your own agent trajectories.
+Users should connect their own NanoBrowser or BrowserUse execution
+pipeline; the released trajectories can be used directly to reproduce
+the Stage B judging results.
 
 ### Benchmark Construction Video
 
@@ -145,7 +146,8 @@ This stage is only required if you want to run your own agent trajectories.
 ---
 #### A1 — Install the Shopping Environment
 
-Install and launch the OneStopShop e-commerce environment from VisualWebArena:
+Install and launch the OneStopShop e-commerce environment from WebArena.
+It is displayed as OneStopMarket within the shopping website.
 
 ```
 https://github.com/web-arena-x/webarena
@@ -325,7 +327,7 @@ DPI_attack/Judge_Output/<AgentName>/<template_id>_judge_results.jsonl
 IPI_attack/Judge_Output/<AgentName>/<template_id>_judge_results.jsonl
 ```
 
-Each output record contains ASR, TDR, and BIR labels with confidence scores, supporting evidence, and a `need_human_review` flag for ambiguous cases.
+Each output record contains ASR, TDR (for IPI), and BIR labels with confidence scores, supporting evidence, and a `need_human_review` flag for ambiguous cases.
 
 ---
 
@@ -355,7 +357,7 @@ StakeBench uses an entity-centric taxonomy. Each attack is categorized by the st
 
 | ID | Objective | Templates |
 |---|---|---|
-| P1 | Spoofed Authority Instructions | DPI: E3.1, E3.2, E4.1, E1.1, E2.1; IPI: E3.3, T3.2, T3.3, E4.2, E4.3, T4.2, T4.3, E1.2, E2.2, T1.2 |
+| P1 | Spoofed Authority Instructions | DPI: E3.1, E3.2, E4.1, E1.1, E2.1, T2.1; IPI: E3.3, T3.2, T3.3, E4.2, E4.3, T4.2, T4.3, E1.2, E2.2, T1.2, T2.2 |
 | P2 | Unauthorized Action Inducement | DPI: E3.1, E3.2, T3.1, E4.1, T4.1, E1.1, E2.1, T2.1; IPI: E3.3, E3.4, T3.2, T3.3, E4.2, E4.3, T4.2, T4.3, E1.2, E2.2, T2.2 |
 | P3 | Workflow Bypass | DPI: T4.1, E1.1, E2.1; IPI: T4.2, T4.3, E1.2, E2.2, T2.2 |
 | P4 | Workflow Loop Induction | IPI: P4.1 |
@@ -376,15 +378,12 @@ ASR and TDR jointly define four failure regimes: **Compounded Failure** (high AS
 
 ## 8. Notes for Reviewers
 
-### 8.1 Anonymization
 
-This repository is anonymized for double-blind review. It does not include author names, institutional identifiers, private repository links, or non-anonymous contact information.
+### 8.1 Fictitious Account Information
 
-### 8.2 Fictitious Account Information
+All account information appearing in agent trajectories — including names, addresses, email addresses, and phone numbers — is fictitious benchmark artifacts created solely for sandbox evaluation purposes. They do not correspond to any real individual, and any resemblance to real persons or locations is coincidental.
 
-All account information appearing in agent trajectories — including names, addresses, email addresses, and phone numbers — are fictitious benchmark artifacts created solely for sandbox evaluation purposes. They do not correspond to any real individual, and any resemblance to real persons or locations is coincidental.
-
-### 8.3 Additional Notes
+### 8.2 Additional Notes
 
 - `--template_id` is optional; omitting it evaluates all templates.
 - Judge output format is JSONL, one record per run.
@@ -392,14 +391,23 @@ All account information appearing in agent trajectories — including names, add
 - All experiments are conducted within a fully sandboxed environment. No real user data, financial transactions, or third-party systems are involved at any stage.
 
 ---
+## License
 
+The original code in this repository is released under the MIT License.
+Third-party environments, libraries, images, and other external assets
+remain subject to their respective licenses.
+
+
+
+
+---
 ## Citation
-If you find this repository useful, please cite our paper through
+If you find this repository useful, please cite our paper
 
 ```
 @article{wang2026pays,
   title={Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents},
-  author={Wang, Zihao and Li, Yiming and Wu, Yutong and Liu, Zheyu and Chen, Kangjie and Wai, Fok Kar and Chen, Pin-Yu and Thing, Vrizlynn LL and Li, Bo and Tao, Dacheng and others},
+  author={Wang, Zihao and Li, Yiming and Wu, Yutong and Chen, Kangjie and Liu, Zheyu and Fok, Kar Wai and Chen, Pin-Yu and Thing, Vrizlynn L. L. and Li, Bo and Tao, Dacheng and Zhang, Tianwei},
   journal={arXiv preprint arXiv:2606.13385},
   year={2026}
 }
