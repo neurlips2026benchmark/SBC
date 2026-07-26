@@ -4,7 +4,7 @@
 
 <h1>StakeBench</h1>
 
-<p>22 attack templates &nbsp;·&nbsp; 264 adversarial cases &nbsp;·&nbsp; 3,168 total runs</p>
+<p>22 attack templates &nbsp;·&nbsp; 264 adversarial cases &nbsp;·&nbsp; 3,168 attacked runs</p>
 
 </div>
 
@@ -333,7 +333,7 @@ Each output record contains ASR, TDR (for IPI), and BIR labels with confidence s
 
 ## 6. Attack Taxonomy
 
-StakeBench uses an stakeholder-centric taxonomy. Each attack is categorized by the stakeholder bearing the resulting harm and the concrete adversarial objective it pursues.
+StakeBench uses a stakeholder-centric taxonomy. Each attack is categorized by the stakeholder bearing the resulting harm and the concrete adversarial objective it pursues.
 
 ### 6.1 User-targeted Objectives
 
@@ -381,13 +381,15 @@ ASR and TDR jointly define four failure regimes: **Compounded Failure** (high AS
 
 ### 8.1 Fictitious Account Information
 
-All account information appearing in agent trajectories — including names, addresses, email addresses, and phone numbers — is fictitious benchmark artifacts created solely for sandbox evaluation purposes. They do not correspond to any real individual, and any resemblance to real persons or locations is coincidental.
+All account information appearing in agent trajectories — including names, addresses, email addresses, and phone numbers — is fictitious 
+and was created solely for sandbox evaluation purposes. None of this information corresponds to any real individual, 
+and any resemblance to real persons or locations is coincidental.
 
 ### 8.2 Additional Notes
 
 - `--template_id` is optional; omitting it evaluates all templates.
 - Judge output format is JSONL, one record per run.
-- The `need_human_review` flag in the judge output identifies cases where automatic labeling is uncertain and manual inspection is recommended.
+- The `need_human_review` flag in the judge output identifies cases where automatic labeling is uncertain and serves as a diagnostic marker.
 - All experiments are conducted within a fully sandboxed environment. No real user data, financial transactions, or third-party systems are involved at any stage.
 
 ---
